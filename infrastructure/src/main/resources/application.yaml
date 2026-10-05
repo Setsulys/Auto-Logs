@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: oLog
+  profiles:
+    active: local
+
+---
+
+server:
+  port: 8080
+
+spring:
+  config:
+    activate:
+      on-profile: local
+  datasource:
+    url: jdbc:postgresql://localhost:5432/AutoLog
+    username: AutoLog_Admin
+    password:
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: prod
+  datasource:
+    url: jdbc:postgresql://localhost:5432/AutoLog
+    username: AutoLog_Admin
+    password:
+    hikari:
+      maximum-pool-size: 3
+      minimum-idle: 1
+      idle-timeout: 10000
+server:
+  tomcat:
+    threads:
+      max: 10
+      min-spare: 2

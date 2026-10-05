@@ -1,9 +1,11 @@
+package site.benly.autolog.model
+
 data class Fuel (
     val name: String,
-    val literprice: Float,
+    val literprice: Float
 )
 
-enum class FuelType{
+enum class FuelType(val value: String) {
     GAZOLE("Gazole"),
     SP_95("Super Sans Plomb 95"),
     E85("Super Ethanol E85"),

@@ -1,4 +1,4 @@
-package site.benly.autolog.infrastructure
+package site.benly.autolog
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
