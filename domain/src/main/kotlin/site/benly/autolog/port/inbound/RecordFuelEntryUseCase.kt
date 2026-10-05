@@ -1,4 +1,8 @@
 package site.benly.autolog.port.inbound
 
-object RecordFuelEntryUseCase {
+import Vehicle
+import java.math.BigDecimal
+
+fun `average fuel consumption`(vehicle: Vehicle ): BigDecimal{
+    return BigDecimal()
 }
