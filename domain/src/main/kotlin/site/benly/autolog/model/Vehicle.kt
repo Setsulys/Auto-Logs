@@ -1,7 +1,7 @@
 package site.benly.autolog.model
 
 import java.time.Instant
-import java.util.UUID
+import java.util.*
 
 class Vehicle(
     val id: UUID,
@@ -34,6 +34,15 @@ class Vehicle(
             odometerKm = odometerKm,
             fuelLiters = fuelLiters,
             totalCost = totalCost
+        )
+    }
+
+    fun updateOdometer(mileage:Int):Vehicle{
+        return Vehicle(
+            id=this.id,
+            lastOdometer = this.currentOdometer,
+            currentOdometer = mileage,
+            tankSize = this.tankSize
         )
     }
 }
