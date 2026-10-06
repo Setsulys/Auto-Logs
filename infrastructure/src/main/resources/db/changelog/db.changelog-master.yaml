@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - changeSet:
+      id: 0-initial-empty-changelog
+      author: autolog
+      changes:
+        - empty: {}
