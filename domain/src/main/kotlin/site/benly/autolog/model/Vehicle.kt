@@ -1,5 +1,4 @@
 package site.benly.autolog.model
-
 import java.time.Instant
 import java.util.*
 
@@ -11,7 +10,6 @@ class Vehicle(
 ){
     init {
         require(lastOdometer >= 0){ "Inital odometer can't be negative" }
-        require(lastOdometer <= tankSize){" Last Odometer must be inferior to the tank size"}
         require( currentOdometer >= 0 ){" Current Odometer can't be negative"}
         require( currentOdometer >= lastOdometer){" Current Odometer can't be inferior to the last odometer"}
         require(tankSize > 0){ "Tank size can't be negative" }

@@ -1,11 +1,8 @@
 package site.benly.autolog.port.inbound
 
-import site.benly.autolog.port.outbound.VehicleRepositoryPort
 import java.util.*
 
+interface VehicleUseCase {
 
-fun `add new mileage to odometer`(vehicleId: UUID,mileage:Int,vehicleRepository:VehicleRepositoryPort){
-    val vehicle = vehicleRepository.findById(vehicleId) ?: throw IllegalStateException("Could not find vehicle with id $vehicleId")
-    vehicle.updateOdometer(mileage)
-    vehicleRepository.save(vehicle)
+    fun execute(vehicleId: UUID, mileage: Int)
 }

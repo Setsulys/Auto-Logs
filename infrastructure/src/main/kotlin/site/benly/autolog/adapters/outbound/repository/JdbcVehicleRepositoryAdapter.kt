@@ -14,9 +14,9 @@ class JdbcVehicleRepositoryAdapter(
 
     override fun findById(id: UUID): Vehicle? {
         val sql = """
-            |SELECT * 
-            |FROM vehicle 
-            |WHERE id = :id
+             SELECT * 
+             FROM vehicle 
+             WHERE id = :id
         """.trimIndent()
 
         return jdbcClient.sql(sql)
@@ -33,23 +33,20 @@ class JdbcVehicleRepositoryAdapter(
             .orElse(null)
     }
 
-    override fun save(vehicle: Vehicle): Vehicle {
+    override fun save(vehicle: Vehicle) {
        val sql = """
-           |INSERT INTO vehicle (id, current_odometer) 
-           |VALUES (:id, :currentOdometer)
-           |ON CONFLICT (id) 
-           |DO UPDATE SET current_odometer = :currentOdometer 
-           |WHERE id = :id
+            INSERT INTO vehicle (id,last_odometer, current_odometer,tank_size) 
+            VALUES (:id, :lastOdometer, :currentOdometer, :tankSize)
+            ON CONFLICT (id) 
+            DO UPDATE SET current_odometer = :currentOdometer 
+            WHERE id = :id
        """.trimIndent()
 
         jdbcClient.sql(sql)
             .param("id", vehicle.id.toString())
-            .param("currentOdometer", vehicle.currentOdometer.toString())
             .param("lastOdometer", vehicle.lastOdometer.toString())
+            .param("currentOdometer", vehicle.currentOdometer.toString())
             .param("tankSize", vehicle.tankSize.toString())
             .update()
-        return vehicle
     }
-
-
 }

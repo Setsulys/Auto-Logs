@@ -7,6 +7,6 @@ interface VehicleRepositoryPort {
 
     fun findById(id: UUID): Vehicle?
 
-    fun save(vehicle: Vehicle): Vehicle
+    fun save(vehicle: Vehicle)
 
 }
