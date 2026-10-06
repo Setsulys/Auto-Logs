@@ -1,11 +1,11 @@
 package site.benly.autolog.adapters.outbound.repository
 
 import org.springframework.beans.factory.annotation.Autowired
-import org.springframework.boot.jdbc.test.autoconfigure.JdbcTest
 import org.springframework.context.annotation.Import
 import org.springframework.jdbc.core.simple.JdbcClient
+import site.benly.autolog.IntegrationTest
 
-@JdbcTest
+@IntegrationTest
 @Import(JdbcVehicleRepositoryAdapter::class)
 class JdbcVehicleRepositoryAdapterTestIT {
 

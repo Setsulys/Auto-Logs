@@ -4,5 +4,5 @@ import java.util.*
 
 interface VehicleUseCase {
 
-    fun execute(vehicleId: UUID, mileage: Int)
+    fun addMileage(vehicleId: UUID, mileage: Int)
 }

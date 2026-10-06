@@ -12,7 +12,7 @@ class Vehicle(
         require(lastOdometer >= 0){ "Inital odometer can't be negative" }
         require( currentOdometer >= 0 ){" Current Odometer can't be negative"}
         require( currentOdometer >= lastOdometer){" Current Odometer can't be inferior to the last odometer"}
-        require(tankSize > 0){ "Tank size can't be negative" }
+        require(tankSize > 0){ "Tank size can't be 0 or less" }
     }
 
     fun addFuelEntry(
@@ -21,8 +21,9 @@ class Vehicle(
         totalCost: Double,
         lastKnownOdometer: Int
     ): FuelEntry{
-        require(odometerKm > lastKnownOdometer){ "Odometer of the filling ($odometerKm km) must be superior to the last filling" }
-        require(fuelLiters > 0){ "The fuel volume must be positive" }
+        require(odometerKm >= lastKnownOdometer){ "Odometer of the filling ($odometerKm km) must be superior to the last filling" }
+        require(fuelLiters >= 0){ "The fuel volume must be positive" }
+        require(tankSize > fuelLiters){ "Too much fuel for the tank" }
         require(totalCost >= 0){ "Ths cost can't be negative" }
 
         return FuelEntry(
