@@ -1,5 +1,6 @@
 package site.benly.autolog.service
 
+import site.benly.autolog.model.Vehicle
 import site.benly.autolog.port.inbound.VehicleUseCase
 import site.benly.autolog.port.outbound.VehicleRepositoryPort
 import java.util.*
@@ -15,4 +16,7 @@ class VehicleUseCaseImpl(
         vehicleRepository.save(vehicle)
     }
 
+    override fun addNewVehicle(newVehicle: Vehicle) {;
+        vehicleRepository.save(newVehicle)
+    }
 }

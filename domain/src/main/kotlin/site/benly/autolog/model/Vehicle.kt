@@ -3,7 +3,7 @@ import java.time.Instant
 import java.util.*
 
 class Vehicle(
-    val id: UUID,
+    val id: UUID = UUID.randomUUID(),
     val lastOdometer: Int,
     val currentOdometer: Int,
     val tankSize: Int
