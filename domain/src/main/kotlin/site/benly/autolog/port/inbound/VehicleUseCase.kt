@@ -7,4 +7,5 @@ interface VehicleUseCase {
 
     fun addMileage(vehicleId: UUID, mileage: Int)
     fun addNewVehicle(newVehicle: Vehicle)
+    fun findByOwner(owner: String): List<Vehicle>
 }

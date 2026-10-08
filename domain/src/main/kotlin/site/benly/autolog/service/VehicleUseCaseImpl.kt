@@ -16,7 +16,13 @@ class VehicleUseCaseImpl(
         vehicleRepository.save(vehicle)
     }
 
-    override fun addNewVehicle(newVehicle: Vehicle) {;
+    override fun addNewVehicle(newVehicle: Vehicle) {
         vehicleRepository.save(newVehicle)
     }
+
+    override fun findByOwner(owner: String): List<Vehicle> {
+        val vehicles = vehicleRepository.findByOwner(owner)
+        return vehicles
+    }
+
 }

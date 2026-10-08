@@ -6,7 +6,8 @@ class Vehicle(
     val id: UUID = UUID.randomUUID(),
     val lastOdometer: Int,
     val currentOdometer: Int,
-    val tankSize: Int
+    val tankSize: Int,
+    val owner: String
 ){
     init {
         require(lastOdometer >= 0){ "Inital odometer can't be negative" }
@@ -41,7 +42,8 @@ class Vehicle(
             id=this.id,
             lastOdometer = this.currentOdometer,
             currentOdometer = mileage,
-            tankSize = this.tankSize
+            tankSize = this.tankSize,
+            owner = this.owner
         )
     }
 }
