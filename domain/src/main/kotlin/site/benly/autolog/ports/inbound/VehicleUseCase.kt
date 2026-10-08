@@ -1,4 +1,4 @@
-package site.benly.autolog.port.inbound
+package site.benly.autolog.ports.inbound
 
 import java.util.*
 

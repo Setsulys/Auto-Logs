@@ -1,6 +1,6 @@
 spring:
   application:
-    name: oLog
+    name: AutoLog
   profiles:
     active: local
 
@@ -10,13 +10,27 @@ server:
   port: 8080
 
 spring:
+  liquibase:
+    enabled: false
   config:
     activate:
       on-profile: local
   datasource:
-    url: jdbc:postgresql://localhost:5432/AutoLog
-    username: AutoLog_Admin
+    url: jdbc:h2:mem:testdb
+    driver-class-name: org.h2.Driver
+    username: sa
     password:
+#  datasource:
+#    url: jdbc:postgresql://localhost:5432/AutoLog
+#    username: AutoLog_Admin
+#    password:
+
+springdoc:
+  api-docs:
+    enabled: true
+    path: /v1/api-docs
+
+
 
 ---
 
@@ -37,3 +51,7 @@ server:
     threads:
       max: 10
       min-spare: 2
+
+springdoc:
+  api-docs:
+    enabled: false

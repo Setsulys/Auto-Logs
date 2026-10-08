@@ -1,4 +1,4 @@
-package site.benly.autolog.model
+package site.benly.autolog.models
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

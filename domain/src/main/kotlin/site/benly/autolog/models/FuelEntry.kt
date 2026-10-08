@@ -1,4 +1,4 @@
-package site.benly.autolog.model
+package site.benly.autolog.models
 
 import java.time.Instant
 import java.util.UUID

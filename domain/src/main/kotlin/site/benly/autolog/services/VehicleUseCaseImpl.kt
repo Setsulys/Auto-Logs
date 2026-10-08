@@ -1,7 +1,7 @@
-package site.benly.autolog.service
+package site.benly.autolog.services
 
-import site.benly.autolog.port.inbound.VehicleUseCase
-import site.benly.autolog.port.outbound.VehicleRepositoryPort
+import site.benly.autolog.ports.inbound.VehicleUseCase
+import site.benly.autolog.ports.outbound.VehicleRepositoryPort
 import java.util.*
 
 
