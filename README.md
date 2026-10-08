@@ -3,13 +3,24 @@
 
 ## Description
 
-Auto-Logs est une application Spring Boot qui permet de [générer / centraliser / analyser] automatiquement les logs de [votre cas d'usage]. Le projet est conçu pour être facilement extensible et indépendant des frameworks externes.
+Auto-Logs is an Sprin Boot application, letting users to maintain their vehicle and see the costs incurred by using this car.
+
+Current utilisation:
+- Add the car mileage and the last fuel filling to have an average month cost of the car
+
+### Next Evolutions
+- Add Electrical cars
+- Add Forums, or scrap from forums, knowns car issue
+- Geolocalisation of ElectricalPoint or GasStation (with price)
+- Technical control reminder
+- Revision reminder
+- Tire inflating reminder
 
 ## Technologies & Architecture 
 
 ### Technologies
 
-Le projet est développé en utilisant l'écosystème moderne de **Kotlin** et **Spring Boot**, avec un outillage robuste pour les tests et la gestion de la base de données :
+This project is developed using Spring Boot and Kotlin, with robust tools for tests and database management
 
 * **Language & Runtime :**
     * **Java 25**
@@ -35,53 +46,48 @@ Le projet est développé en utilisant l'écosystème moderne de **Kotlin** et *
     * **SpringDoc OpenAPI 3.1.1** (with **WebMVC UI**)
 
 ### Architecture
-For the Architecture of this project, we used, hexagonal architecture for a better 
-project modularity, so if a technology is deprecated or other things that might happen, 
-we won't be blocked, and will gain productivity time.
+For the Architecture of this project, we used, hexagonal architecture guarantying a project modularity, the core is independant of frameworks (databases, external API), 
+If a technology is deprecated, it can be changed without impacting the business logic.
 
-Pour ce projet, nous avons mis en place une **Architecture Hexagonale** (Ports & Adapteurs). Ce choix garantit une excellente modularité : le cœur métier est totalement indépendant des frameworks, des bases de données ou des APIs externes. Si une technologie devient obsolète, elle peut être remplacée sans impacter la logique métier.
-
-L'arborescence du projet suit ce découpage strict :
+The project follow this strict structure
 ```text
     📂AutoLog
-    ├── 📂 domain                                           # Cœur Métier
+    ├── 📂 domain                                           # Domain Core
     │   └── 📂 src/main/kotlin/site/benly/autolog
-    │      ├── 📂 models                                    # Objets métiers et entités
-    │      ├── 📂 ports                                     # Interfaces de liaison
-    │      │   ├── 📂 inbound                               # Cas d'utilisation (Use Cases)
-    │      │   └── 📂 outbound                              # Contrats requis (Repositories, SPI)
-    │      └── 📂 services                                  # Implémentations des Use Cases du domaine
+    │      ├── 📂 models                                    # Business Objects and entities
+    │      ├── 📂 ports                                     # Linking ports
+    │      │   ├── 📂 inbound                               # Use Cases
+    │      │   └── 📂 outbound                              # Repositories, SPI
+    │      └── 📂 services                                  # Domain Use Case Implementation
     │
-    └── 📂 infrastructure                                   # Module Technique (Dépendant du Framework)
+    └── 📂 infrastructure                                   # Technical module (Framework Dependent)
         └── 📂 src/main/kotlin/site/benly/autolog
-            ├── 📂 adapters                                 # Implémentations concrètes des ports
+            ├── 📂 adapters                                 # Concrete ports implementations
             │   ├── 📂 inbound                              
-            │   │   └── 📂 rest                             # Contrôleurs REST
-            │   │       └── 📂 DTO                          # Objets d'échange de l'API
-            │   └── 📂 outbound                             # Persistance (JDBC), Clients HTTP, etc.
-            │       └── 📂 repository                       # Implémentation des accès BDD
-            └── 📂 config                                   # Configuration Spring Boot et Beans du domaine
+            │   │   └── 📂 rest                             # REST controlers
+            │   │       └── 📂 DTO                          # API objects change
+            │   └── 📂 outbound                             # Persistance (JDBC), HTTP Clients , etc.
+            │       └── 📂 repository                       # Database access implementation
+            └── 📂 config                                   # Spring Boot configuration and Domain Beans
 ```
 
 ## Installation and Run
 
-
 ### Prequisite
-* **JDK 25** installé.
-* **Maven** (ou le wrapper `./mvnw` inclus).
-* Une instance **PostgreSQL** active.
+* **JDK 25** installed
+* **Maven** (or the `./mvnw` wrapper included).
+* An active **PostgreSQL** instance .
 
 ### Configuration de la Base de Données
 Avant de lancer l'application, assurez-vous de configurer vos accès à PostgreSQL. Vous pouvez définir les variables d'environnement suivantes ou adapter votre fichier `application.yml` :
 
 ```env
 SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/autolog_db
-SPRING_DATASOURCE_USERNAME=votre_utilisateur
-SPRING_DATASOURCE_PASSWORD=votre_mot_de_passe
+SPRING_DATASOURCE_USERNAME=your_username
+SPRING_DATASOURCE_PASSWORD=your_password
 ```
 
-> **Note :** Liquibase exécutera automatiquement les scripts de migration à la racine du projet lors du premier démarrage pour créer les tables nécessaires.
-
+> **Note :** Liquibase will automaticaly run migration script at the root of the project to create the required tables
 
 ### Run
 1. Cloner the repo :
@@ -104,7 +110,7 @@ SPRING_DATASOURCE_PASSWORD=votre_mot_de_passe
 ## Documentation API
 
 ### Springdoc
-After The app
-Une fois l'application démarrée, la documentation interactive de l'API (Swagger UI) générée par SpringDoc est accessible à l'adresse suivante :
-- Local : 🔗 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
-- Prod  : 🔗 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+After running the app, the API documentation (Swagger UI) will be generated by spring doc and will be accessible by theses links:
+> - Local : 🔗 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
+
+> - Prod  : 🔗 [http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
