@@ -7,7 +7,7 @@ class Vehicle(
     val lastOdometer: Int,
     val currentOdometer: Int,
     val tankSize: Int,
-    val owner: String
+    val ownerID: UUID
 ){
     init {
         require(lastOdometer >= 0){ "Inital odometer can't be negative" }
@@ -18,9 +18,11 @@ class Vehicle(
 
     fun addFuelEntry(
         odometerKm: Int,
+        ownerID: UUID,
         fuelLiters: Double,
         totalCost: Double,
-        lastKnownOdometer: Int
+        lastKnownOdometer: Int,
+        isFullTank: Boolean
     ): FuelEntry{
         require(odometerKm >= lastKnownOdometer){ "Odometer of the filling ($odometerKm km) must be superior to the last filling" }
         require(fuelLiters >= 0){ "The fuel volume must be positive" }
@@ -33,7 +35,8 @@ class Vehicle(
             entryDate = Instant.now(),
             odometerKm = odometerKm,
             fuelLiters = fuelLiters,
-            totalCost = totalCost
+            totalCost = totalCost,
+            isFullTank = isFullTank
         )
     }
 
@@ -43,7 +46,7 @@ class Vehicle(
             lastOdometer = this.currentOdometer,
             currentOdometer = mileage,
             tankSize = this.tankSize,
-            owner = this.owner
+            ownerID = this.ownerID
         )
     }
 }

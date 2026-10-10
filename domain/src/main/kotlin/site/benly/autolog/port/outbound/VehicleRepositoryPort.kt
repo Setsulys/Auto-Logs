@@ -9,6 +9,6 @@ interface VehicleRepositoryPort {
 
     fun save(vehicle: Vehicle)
 
-    fun findByOwner(name: String): List<Vehicle>
+    fun findByOwner(owner: UUID): List<Vehicle>
 
 }

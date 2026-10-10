@@ -20,8 +20,8 @@ class VehicleUseCaseImpl(
         vehicleRepository.save(newVehicle)
     }
 
-    override fun findByOwner(owner: String): List<Vehicle> {
-        val vehicles = vehicleRepository.findByOwner(owner)
+    override fun findByOwner(ownerID: UUID): List<Vehicle> {
+        val vehicles = vehicleRepository.findByOwner(ownerID)
         return vehicles
     }
 

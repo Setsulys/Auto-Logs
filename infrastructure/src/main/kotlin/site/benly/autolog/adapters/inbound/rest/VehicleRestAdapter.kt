@@ -26,11 +26,12 @@ class VehicleRestAdapter(
     }
 
     @GetMapping("/vehicles/list")
-    fun `get list of all vehicles of an user`(@RequestParam owner: String): List<VehicleListResponse> {
-        val vehicles = vehicleUseCase.findByOwner(owner)
+    fun `get list of all vehicles of an user`(@RequestParam ownerID: UUID): List<VehicleListResponse> {
+        val vehicles = vehicleUseCase.findByOwner(ownerID)
         return vehicles.map { vehicle ->
             VehicleListResponse(
                 id = vehicle.id,
+                ownerID = vehicle.ownerID,
                 currentOdometer = vehicle.currentOdometer,
                 lastOdometer = vehicle.lastOdometer,
                 tankSize = vehicle.tankSize,
