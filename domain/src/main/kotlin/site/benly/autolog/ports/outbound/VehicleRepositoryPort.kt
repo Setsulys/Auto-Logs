@@ -1,6 +1,6 @@
-package site.benly.autolog.port.outbound
+package site.benly.autolog.ports.outbound
 
-import site.benly.autolog.model.Vehicle
+import site.benly.autolog.models.Vehicle
 import java.util.*
 
 interface VehicleRepositoryPort {

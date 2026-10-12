@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import site.benly.autolog.adapters.outbound.repository.stub.InMemoryJdbcVehicleRepositoryAdapter
-import site.benly.autolog.model.Vehicle
+import site.benly.autolog.models.Vehicle
 import java.util.*
 
 class JdbcVehicleRepositoryAdapterTest {

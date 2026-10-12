@@ -2,8 +2,8 @@ package site.benly.autolog.adapters.outbound.repository
 
 import org.springframework.jdbc.core.simple.JdbcClient
 import org.springframework.stereotype.Component
-import site.benly.autolog.model.Vehicle
-import site.benly.autolog.port.outbound.VehicleRepositoryPort
+import site.benly.autolog.models.Vehicle
+import site.benly.autolog.ports.outbound.VehicleRepositoryPort
 import java.util.*
 
 

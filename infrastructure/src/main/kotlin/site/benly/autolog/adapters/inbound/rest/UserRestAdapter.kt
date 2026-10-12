@@ -8,7 +8,7 @@ import java.util.*
 
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/users")
 class UserRestAdapter(
     val userUseCase: UserUseCase
 ) {

@@ -1,9 +1,10 @@
 package site.benly.autolog.adapters.inbound.rest.dto
 
-import site.benly.autolog.model.Vehicle
+import site.benly.autolog.models.Vehicle
+import java.util.*
 
-data class VehicleDTO(val odometer: Int, val tankSize: Int, val owner: String)
+data class VehicleDTO(val odometer: Int, val tankSize: Int, val userId: UUID)
 
 fun VehicleDTO.toVehicle(): Vehicle {
-    return Vehicle(currentOdometer = this.odometer, lastOdometer = this.odometer, tankSize = this.tankSize, owner = this.owner)
+    return Vehicle(odometer = this.odometer, tankSize = this.tankSize, userId = this.userId)
 }

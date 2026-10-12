@@ -1,7 +1,7 @@
 package site.benly.autolog.adapters.outbound.repository.stub
 
-import site.benly.autolog.model.Vehicle
-import site.benly.autolog.port.outbound.VehicleRepositoryPort
+import site.benly.autolog.models.Vehicle
+import site.benly.autolog.ports.outbound.VehicleRepositoryPort
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap
 
