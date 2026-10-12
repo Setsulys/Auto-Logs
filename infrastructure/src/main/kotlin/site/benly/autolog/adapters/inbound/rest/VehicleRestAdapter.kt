@@ -7,9 +7,8 @@ import org.springframework.web.bind.annotation.RestController
 import site.benly.autolog.adapters.inbound.rest.dto.VehicleDTO
 import site.benly.autolog.adapters.inbound.rest.dto.VehicleListResponse
 import site.benly.autolog.adapters.inbound.rest.dto.toVehicle
-import site.benly.autolog.model.Vehicle
 import site.benly.autolog.port.inbound.VehicleUseCase
-import java.util.UUID
+import java.util.*
 
 @RestController
 class VehicleRestAdapter(
@@ -32,8 +31,8 @@ class VehicleRestAdapter(
             VehicleListResponse(
                 id = vehicle.id,
                 ownerID = vehicle.ownerID,
-                currentOdometer = vehicle.currentOdometer,
-                lastOdometer = vehicle.lastOdometer,
+                odometer = vehicle.odometer,
+                lastRange = vehicle.lastRange,
                 tankSize = vehicle.tankSize,
             )
         }
