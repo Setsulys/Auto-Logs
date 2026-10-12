@@ -1,8 +1,8 @@
 package site.benly.autolog.model
 
-import java.util.UUID
+import java.util.*
 
-class Owner (
+class User (
     val id: UUID,
     val email: String,
     val pseudo: String,
