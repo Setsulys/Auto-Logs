@@ -1,5 +1,6 @@
 package site.benly.autolog.service
 
+import site.benly.autolog.model.Vehicle
 import site.benly.autolog.port.inbound.VehicleUseCase
 import site.benly.autolog.port.outbound.VehicleRepositoryPort
 import java.util.*
@@ -15,4 +16,17 @@ class VehicleUseCaseImpl(
         vehicleRepository.save(vehicle)
     }
 
+    override fun addNewVehicle(newVehicle: Vehicle) {
+        vehicleRepository.save(newVehicle)
+    }
+
+    override fun findByUser(userId: UUID): List<Vehicle> {
+        val vehicles = vehicleRepository.findByUser(userId)
+        return vehicles
+    }
+
+    override fun removeVehicle(vehicleId: UUID) :Boolean {
+        vehicleRepository.findById(vehicleId) ?: throw IllegalStateException("Could not find vehicle with id $vehicleId")
+        return vehicleRepository.delete(vehicleId)
+    }
 }
