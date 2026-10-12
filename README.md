@@ -81,10 +81,12 @@ The project follow this strict structure
 ### Configuration de la Base de Données
 Avant de lancer l'application, assurez-vous de configurer vos accès à PostgreSQL. Vous pouvez définir les variables d'environnement suivantes ou adapter votre fichier `application.yml` :
 
-```env
-SPRING_DATASOURCE_URL=jdbc:postgresql://localhost:5432/autolog_db
-SPRING_DATASOURCE_USERNAME=your_username
-SPRING_DATASOURCE_PASSWORD=your_password
+```yaml
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/autolog_db
+    username: your_username
+    password: your_password
 ```
 
 > **Note :** Liquibase will automaticaly run migration script at the root of the project to create the required tables
