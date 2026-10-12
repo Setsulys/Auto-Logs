@@ -4,15 +4,14 @@ import java.util.*
 
 class Vehicle(
     val id: UUID = UUID.randomUUID(),
-    val lastOdometer: Int,
-    val currentOdometer: Int,
+    val odometer: Int = 0,
+    val lastRange: Int = 0,
     val tankSize: Int,
     val ownerID: UUID
 ){
     init {
-        require(lastOdometer >= 0){ "Inital odometer can't be negative" }
-        require( currentOdometer >= 0 ){" Current Odometer can't be negative"}
-        require( currentOdometer >= lastOdometer){" Current Odometer can't be inferior to the last odometer"}
+        require(odometer >= 0){ "Inital odometer can't be negative" }
+        require( lastRange >= 0 ){" Current Odometer can't be negative"}
         require(tankSize > 0){ "Tank size can't be 0 or less" }
     }
 
@@ -41,10 +40,11 @@ class Vehicle(
     }
 
     fun updateOdometer(mileage:Int):Vehicle{
+        val range = mileage-odometer
         return Vehicle(
             id=this.id,
-            lastOdometer = this.currentOdometer,
-            currentOdometer = mileage,
+            odometer = odometer,
+            lastRange = range,
             tankSize = this.tankSize,
             ownerID = this.ownerID
         )
