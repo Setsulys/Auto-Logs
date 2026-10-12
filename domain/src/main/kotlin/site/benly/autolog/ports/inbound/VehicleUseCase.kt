@@ -1,6 +1,6 @@
 package site.benly.autolog.ports.inbound
 
-import site.benly.autolog.model.Vehicle
+import site.benly.autolog.models.Vehicle
 import java.util.*
 
 interface VehicleUseCase {

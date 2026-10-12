@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*
 import site.benly.autolog.adapters.inbound.rest.dto.VehicleDTO
 import site.benly.autolog.adapters.inbound.rest.dto.VehicleListResponse
 import site.benly.autolog.adapters.inbound.rest.dto.toVehicle
-import site.benly.autolog.port.inbound.VehicleUseCase
+import site.benly.autolog.ports.inbound.VehicleUseCase
 import java.util.*
 
 @RestController
@@ -19,8 +19,8 @@ class VehicleRestAdapter(
     }
 
     @PostMapping("/addVehicle")
-    fun `add new vehicle when webclient asked to`(odometer: Int, tankSize: Int, owner: String){
-        vehicleUseCase.addNewVehicle(VehicleDTO(odometer, tankSize, owner).toVehicle())
+    fun `add new vehicle when webclient asked to`(odometer: Int, tankSize: Int, userId: UUID){
+        vehicleUseCase.addNewVehicle(VehicleDTO(odometer, tankSize, userId).toVehicle())
     }
 
     @DeleteMapping("/{vehicleID}")

@@ -1,14 +1,14 @@
 package site.benly.autolog.service
 
-import site.benly.autolog.model.Vehicle
-import site.benly.autolog.port.inbound.VehicleUseCase
-import site.benly.autolog.port.outbound.VehicleRepositoryPort
+import site.benly.autolog.models.Vehicle
+import site.benly.autolog.ports.inbound.VehicleUseCase
+import site.benly.autolog.ports.outbound.VehicleRepositoryPort
 import java.util.*
 
 
 class VehicleUseCaseImpl(
     private val vehicleRepository: VehicleRepositoryPort
-) : VehicleUseCase{
+) : VehicleUseCase {
 
     override fun addMileage(vehicleId: UUID, mileage: Int) {
         val vehicle = vehicleRepository.findById(vehicleId) ?: throw IllegalStateException("Could not find vehicle with id $vehicleId")
