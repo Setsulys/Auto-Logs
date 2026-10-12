@@ -12,21 +12,21 @@ class JdbcVehicleRepositoryAdapter(
     val jdbcClient: JdbcClient
 ): VehicleRepositoryPort {
 
-    override fun findById(id: UUID): Vehicle? {
+    override fun findById(vehicleId: UUID): Vehicle? {
         val sql = """
              SELECT *
              FROM vehicle
-             WHERE id = :id
+             WHERE id = :vehicleId
         """.trimIndent()
 
         return jdbcClient.sql(sql)
-            .param("id", id)
+            .param("id", vehicleId)
             .query{ rs, _ ->
                 Vehicle(
                     id = UUID.fromString(rs.getString("id")),
-                    ownerID = UUID.fromString(rs.getString("ownerID")),
-                    currentOdometer = rs.getInt("currentOdometer"),
-                    lastOdometer = rs.getInt("lastOdometer"),
+                    userId = UUID.fromString(rs.getString("userId")),
+                    odometer = rs.getInt("odometer"),
+                    lastRange = rs.getInt("lastRange"),
                     tankSize = rs.getInt("tankSize"),
                 )
             }
@@ -36,39 +36,47 @@ class JdbcVehicleRepositoryAdapter(
 
     override fun save(vehicle: Vehicle) {
        val sql = """
-            INSERT INTO vehicle (id, last_odometer, current_odometer,tank_size, ownerID)
-            VALUES (:id, :lastOdometer, :currentOdometer, :tankSize, :ownerID)
+            INSERT INTO vehicle (id, odometer, lastRange,tank_size, userId)
+            VALUES (:id, :odometer, :lastRange, :tankSize, :userId)
             ON CONFLICT (id)
-            DO UPDATE SET current_odometer = :currentOdometer
+            DO UPDATE SET odometer = :odometer
             WHERE id = :id
        """.trimIndent()
 
         jdbcClient.sql(sql)
             .param("id", vehicle.id.toString())
-            .param("ownerID", vehicle.ownerID.toString())
-            .param("lastOdometer", vehicle.lastOdometer.toString())
-            .param("currentOdometer", vehicle.currentOdometer.toString())
+            .param("userId", vehicle.userId.toString())
+            .param("odometer", vehicle.odometer.toString())
+            .param("lastRange", vehicle.lastRange.toString())
             .param("tankSize", vehicle.tankSize.toString())
             .update()
     }
 
-    override fun findByOwner(ownerID: UUID): List<Vehicle> {
+    override fun findByUser(userId: UUID): List<Vehicle> {
         val sql = """
             SELECT *
             FROM vehicle
-            WHERE ownerID = :ownerID
+            WHERE userId = :userId
         """.trimIndent()
         return jdbcClient.sql(sql)
-            .param("ownerID", ownerID)
+            .param("userId", userId)
             .query{rs, _ ->
                 Vehicle(
                     id = UUID.fromString(rs.getString("id")),
-                    ownerID = UUID.fromString(rs.getString("ownerID")),
-                    currentOdometer = rs.getInt("currentOdometer"),
-                    lastOdometer = rs.getInt("lastOdometer"),
+                    userId = UUID.fromString(rs.getString("userId")),
+                    odometer = rs.getInt("currentOdometer"),
+                    lastRange = rs.getInt("lastOdometer"),
                     tankSize = rs.getInt("tankSize"),
                 )
             }
             .list()
+    }
+
+    override fun delete(vehicleId: UUID): Boolean {
+        val sql = """
+            DELETE FROM vehicle
+            WHERE vehicleId = :vehicleId
+        """.trimIndent()
+        return jdbcClient.sql(sql).param("vehicleId",vehicleId).update()==1
     }
 }

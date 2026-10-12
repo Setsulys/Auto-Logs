@@ -20,9 +20,13 @@ class VehicleUseCaseImpl(
         vehicleRepository.save(newVehicle)
     }
 
-    override fun findByOwner(ownerID: UUID): List<Vehicle> {
-        val vehicles = vehicleRepository.findByOwner(ownerID)
+    override fun findByUser(userId: UUID): List<Vehicle> {
+        val vehicles = vehicleRepository.findByUser(userId)
         return vehicles
     }
 
+    override fun removeVehicle(vehicleId: UUID) :Boolean {
+        vehicleRepository.findById(vehicleId) ?: throw IllegalStateException("Could not find vehicle with id $vehicleId")
+        return vehicleRepository.delete(vehicleId)
+    }
 }

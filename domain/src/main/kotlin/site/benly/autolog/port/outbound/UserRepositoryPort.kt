@@ -5,7 +5,9 @@ import java.util.*
 
 interface UserRepositoryPort {
 
-    fun update()
+    fun update(user: User)
 
-    fun findById(id: UUID): Optional<User>
+    fun findById(id: UUID): User?
+
+    fun delete(id: UUID) : Boolean
 }

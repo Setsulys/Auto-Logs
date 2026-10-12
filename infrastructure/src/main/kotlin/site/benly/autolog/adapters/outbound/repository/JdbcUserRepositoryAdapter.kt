@@ -13,11 +13,49 @@ class JdbcUserRepositoryAdapter(
 ) : UserRepositoryPort {
 
 
-    override fun update() {
-        TODO("Not yet implemented")
+    override fun update(user: User) {
+        val sql ="""
+            INSERT INTO user (id, email, pseudo)
+            VALUES (:id, :email, :pseudo)
+            ON CONFLICT (id)
+            DO UPDATE SET 
+            email = :email,
+            pseudo = :pseudo
+            WHERE id = :id
+        """.trimIndent()
+
+        jdbcClient.sql(sql)
+            .param("id",user.id)
+            .param("email",user.email)
+            .param("pseudo",user.pseudo)
+            .update()
     }
 
-    override fun findById(id: UUID): Optional<User> {
-        TODO("Not yet implemented")
+    override fun findById(id: UUID): User? {
+        val sql = """
+            SELECT *
+            FROM user
+            WHERE id = :id
+        """.trimIndent()
+
+        return jdbcClient.sql(sql)
+            .param("id",id)
+            .query{ rs, _ ->
+                User(
+                    id= UUID.fromString(rs.getString("id")),
+                    email = rs.getString("email"),
+                    pseudo = rs.getString("pseudo")
+                )
+            }.optional().orElse(null)
+    }
+
+    override fun delete(id: UUID): Boolean {
+        val sql = """
+            DELETE 
+            FROM user
+            WHERE id = :id
+        """.trimIndent()
+
+        return jdbcClient.sql(sql).param("id",id).update() == 1
     }
 }

@@ -4,7 +4,7 @@ import java.util.*
 
 data class VehicleListResponse(
     val id: UUID,
-    val ownerID: UUID,
+    val userId: UUID,
     val odometer: Int,
     val lastRange: Int,
     val tankSize: Int,

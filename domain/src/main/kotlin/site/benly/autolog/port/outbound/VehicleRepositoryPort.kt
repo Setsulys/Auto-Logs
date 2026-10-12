@@ -5,10 +5,11 @@ import java.util.*
 
 interface VehicleRepositoryPort {
 
-    fun findById(id: UUID): Vehicle?
+    fun findById(vehicleId: UUID): Vehicle?
 
     fun save(vehicle: Vehicle)
 
-    fun findByOwner(owner: UUID): List<Vehicle>
+    fun findByUser(userId: UUID): List<Vehicle>
 
+    fun delete(vehicleId: UUID) : Boolean
 }

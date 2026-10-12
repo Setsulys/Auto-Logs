@@ -7,7 +7,7 @@ class Vehicle(
     val odometer: Int = 0,
     val lastRange: Int = 0,
     val tankSize: Int,
-    val ownerID: UUID
+    val userId: UUID
 ){
     init {
         require(odometer >= 0){ "Inital odometer can't be negative" }
@@ -17,7 +17,7 @@ class Vehicle(
 
     fun addFuelEntry(
         odometerKm: Int,
-        ownerID: UUID,
+        userId: UUID,
         fuelLiters: Double,
         totalCost: Double,
         lastKnownOdometer: Int,
@@ -46,7 +46,7 @@ class Vehicle(
             odometer = odometer,
             lastRange = range,
             tankSize = this.tankSize,
-            ownerID = this.ownerID
+            userId = this.userId
         )
     }
 }
